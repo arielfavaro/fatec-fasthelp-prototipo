@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FiHome, FiClipboard, FiMonitor, FiUsers, FiZap, FiUserCheck } from 'react-icons/fi';
+import { FiHome, FiClipboard, FiMonitor, FiUsers, FiZap, FiUserCheck, FiX } from 'react-icons/fi';
 import { tickets } from '../data/mockData';
 import './Sidebar.css';
 
@@ -11,9 +11,9 @@ const navItems = [
   { to: '/tecnicos', icon: <FiUsers />, label: 'Técnicos' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon">
           <FiZap />
@@ -22,6 +22,9 @@ export default function Sidebar() {
           <h1>FastShop</h1>
           <span>Service Desk</span>
         </div>
+        <button className="sidebar-close-btn" onClick={onClose} aria-label="Fechar menu">
+          <FiX size={20} />
+        </button>
       </div>
 
       <nav className="sidebar-nav">
@@ -32,6 +35,7 @@ export default function Sidebar() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+            onClick={onClose}
           >
             <span className="sidebar-link-icon">{item.icon}</span>
             {item.label}

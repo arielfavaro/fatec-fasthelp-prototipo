@@ -213,6 +213,32 @@
   color: var(--text-tertiary);
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .clients-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clients-search input {
+    min-width: 100%;
+  }
+
+  .clients-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .client-card {
+    padding: 18px;
+  }
+
+  .client-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+  }
+}
+
 /* Status change dropdown on ticket detail */
 .status-change-area {
   display: flex;

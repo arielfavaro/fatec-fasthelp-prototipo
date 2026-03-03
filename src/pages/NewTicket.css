@@ -135,3 +135,24 @@ select.form-control option {
   font-weight: 500;
   animation: fadeIn var(--transition-base) ease-out;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .new-ticket-form {
+    max-width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+

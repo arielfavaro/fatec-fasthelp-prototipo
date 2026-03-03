@@ -88,3 +88,24 @@
   color: var(--text-tertiary);
   margin-bottom: 12px;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tickets-filters {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filter-input-search {
+    min-width: 100%;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .tickets-pagination {
+    flex-wrap: wrap;
+  }
+}
+

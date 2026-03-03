@@ -380,3 +380,73 @@
   color: var(--text-primary);
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .ticket-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ticket-header-info h1 {
+    font-size: 1.15rem;
+  }
+
+  .ticket-header-actions {
+    width: 100%;
+  }
+
+  .status-change-area {
+    width: 100%;
+  }
+
+  .status-select {
+    flex: 1;
+  }
+
+  .ticket-header-meta {
+    gap: 8px;
+  }
+
+  .status-timeline {
+    gap: 0;
+  }
+
+  .status-step-dot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  .detail-card-body {
+    padding: 14px;
+  }
+
+  .notes-tabs {
+    overflow-x: auto;
+  }
+
+  .notes-tab {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .detail-info-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .detail-info-value {
+    text-align: left;
+  }
+
+  .budget-value {
+    font-size: 1.25rem;
+  }
+}
+
+

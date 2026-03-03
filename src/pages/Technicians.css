@@ -136,3 +136,21 @@
   font-weight: 500;
   margin-right: 8px;
 }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .technicians-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-card {
+    padding: 18px;
+  }
+
+  .tech-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+  }
+}
+
