@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { FiArrowLeft, FiPaperclip, FiFile, FiCheck, FiX, FiSend, FiDollarSign } from 'react-icons/fi';
+import { FiArrowLeft, FiPaperclip, FiFile, FiCheck, FiX, FiSend, FiDollarSign, FiChevronRight } from 'react-icons/fi';
 import { tickets, STATUS_LIST, getClientById, getEquipmentById, getTechnicianById, getStatusInfo, getPriorityInfo, technicians } from '../data/mockData';
 import { formatDate, formatTimeAgo, getSlaStatus, formatCurrency } from '../utils/sla';
 import Badge from '../components/Badge';
@@ -58,13 +58,21 @@ export default function TicketDetail() {
   function advanceStatus() {
     const idx = STATUS_LIST.findIndex(s => s.key === localStatus);
     if (idx < STATUS_LIST.length - 1) {
-      // If advancing to 'em_manutencao' and budget is pending, block
-      if (STATUS_LIST[idx + 1].key === 'em_manutencao' && localBudget && localBudget.status === 'pendente') {
+      const nextStatus = STATUS_LIST[idx + 1].key;
+      if (nextStatus === 'em_manutencao' && localBudget && localBudget.status === 'pendente') {
         alert('O orçamento precisa ser aprovado antes de avançar para "Em Manutenção".');
         return;
       }
-      setLocalStatus(STATUS_LIST[idx + 1].key);
+      setLocalStatus(nextStatus);
     }
+  }
+
+  function handleManualStatusChange(newStatus) {
+    if (newStatus === 'em_manutencao' && localBudget && localBudget.status === 'pendente') {
+      alert('O orçamento precisa ser aprovado antes de definir status "Em Manutenção".');
+      return;
+    }
+    setLocalStatus(newStatus);
   }
 
   function handleApproveBudget() {
@@ -114,7 +122,20 @@ export default function TicketDetail() {
         </div>
         <div className="ticket-header-actions">
           {localStatus !== 'finalizado' && (
-            <Button size="sm" onClick={advanceStatus}>Avançar Status</Button>
+            <div className="status-change-area">
+              <select
+                className="status-select"
+                value={localStatus}
+                onChange={e => handleManualStatusChange(e.target.value)}
+              >
+                {STATUS_LIST.map(s => (
+                  <option key={s.key} value={s.key}>{s.label}</option>
+                ))}
+              </select>
+              {currentStepIndex < STATUS_LIST.length - 1 && (
+                <Button size="sm" icon={<FiChevronRight />} onClick={advanceStatus}>Avançar</Button>
+              )}
+            </div>
           )}
         </div>
       </div>

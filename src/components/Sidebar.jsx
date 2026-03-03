@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { FiHome, FiClipboard, FiMonitor, FiUsers, FiZap } from 'react-icons/fi';
+import { FiHome, FiClipboard, FiMonitor, FiUsers, FiZap, FiUserCheck } from 'react-icons/fi';
 import { tickets } from '../data/mockData';
 import './Sidebar.css';
 
 const navItems = [
   { to: '/', icon: <FiHome />, label: 'Dashboard' },
   { to: '/chamados', icon: <FiClipboard />, label: 'Chamados', badge: tickets.filter(t => t.status === 'aberto').length },
+  { to: '/clientes', icon: <FiUserCheck />, label: 'Clientes' },
   { to: '/equipamentos', icon: <FiMonitor />, label: 'Equipamentos' },
   { to: '/tecnicos', icon: <FiUsers />, label: 'Técnicos' },
 ];
